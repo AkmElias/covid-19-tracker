@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
-import "./App.css";
+import numeral from "numeral";
+import Map from "./app-left/Map";
+import "leaflet/dist/leaflet.css";
 import {
   MenuItem,
   FormControl,
@@ -7,13 +9,13 @@ import {
   Card,
   CardContent,
 } from "@material-ui/core";
-import InfoBox from "./InfoBox";
-import LineGraph from "./LineGraph";
-import Table from "./Table";
-import { sortData, prettyPrintStat } from "./util";
-import numeral from "numeral";
-import Map from "./Map";
-import "leaflet/dist/leaflet.css";
+
+import "./App.css";
+import InfoBox from "./app-left/InfoBox";
+import LineGraph from "./app-right/LineGraph";
+import Table from "./app-right/Table";
+import { sortData, prettyPrintStat } from "../utility/util";
+
 
 const App = () => {
   const [country, setInputCountry] = useState("worldwide");
@@ -52,12 +54,12 @@ const App = () => {
     getCountriesData();
   }, []);
 
-  console.log(casesType);
+  // console.log(casesType);
 
   const onCountryChange = async (e) => {
     const countryCode = e.target.value;
     if (countryCode === "worldwide") {
-      fetch("https://disease.sh/v3/covid-19/all")
+      await fetch("https://disease.sh/v3/covid-19/all")
         .then((response) => response.json())
         .then((data) => {
           setCountryInfo(data);

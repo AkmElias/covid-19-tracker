@@ -35,7 +35,13 @@ body {
 }
 
 .app__left {
-  flex: 0.9;
+  flex: 0.6;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+.app__right {
+  flex: 0.4;
 }
 
 .app__information > h3 {
@@ -52,5 +58,6 @@ body {
 @media (max-width: 990px) {
   .app {
     flex-direction: column;
+    justify-content: space-between;
   }
 }
